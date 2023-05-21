@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setChangeProducts } from "../redux/productsSlice";
 
+
 function Product({ item, index }) {
   const [price, setPrice] = useState();
   const dispatch = useDispatch();
@@ -35,9 +36,14 @@ function Product({ item, index }) {
 
 
   const SHEET_ID = "1sfh7uwLfPL7j6-hWp5WGjin6PiOIG2WisWSa5sX_K5E";
-  const ACCESS_TOKEN =
+   /*const ACCESS_TOKEN =
     "ya29.a0AWY7CknjDjjf2UlIAGuA01LbUDCPu_g2DYGZHhEfdLXRjdk3v22WGEA17fwJ8lAEpRjP9eb57Z2hrT2h8BcV75F8I3wjVRYLPLafpmSNNGXXSM-2X8uMfBrO2HjK9v5kGUXhM2OanXxo5QTdtxmfQYrND73LaCgYKAdISARASFQG1tDrpo-Mgq_0zCO6OoSCL4ZseTA0163";
-  
+  */
+
+
+    const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
+   
+
     const change = (targetPrice) => {
       const formattedPrice = parseFloat(targetPrice).toFixed(2); // Ensure targetPrice is a valid number and format it with two decimal places
       const sheetId = 0;
