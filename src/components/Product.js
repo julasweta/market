@@ -97,7 +97,7 @@ function Product({ item, index }) {
       <td>{item[1] || 1}</td>
       <td>{item[2] || 2}</td>
       <td>
-        <input onChange={(e) => setPrice(e.target.value)}></input>
+        <input className="price-input" onChange={(e) => setPrice(e.target.value)}></input>
       </td>
       <td>
         <button onClick={() => change(price)}>Змінити</button>

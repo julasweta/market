@@ -7,7 +7,8 @@
   border-collapse: collapse;
 }
 
-.product-table th, .product-table td {
+.product-table th,
+.product-table td {
   padding: 8px;
   border: 1px solid #ccc;
 }
@@ -23,4 +24,26 @@
 .product-table .odd-row {
   background-color: #f9f9f9;
 }
+
+.price-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+  .product-table th,
+  .product-table td {
+    padding: 4px;
+    font-size: 14px;
+  }
+
+  .price-input {
+    padding: 4px;
+    font-size: 14px;
+  }
+}
+
 
