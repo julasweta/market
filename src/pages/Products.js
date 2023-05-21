@@ -1,33 +1,30 @@
 import React from "react";
 import { useEffect } from "react";
-import Papa from "papaparse";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setProducts } from "../redux/productsSlice";
 import Product from "../components/Product";
 
-
 function Products() {
-  const { products } = useSelector((state) => state.products);
+  const { products, changeProducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
 
+const url = `https://sheets.googleapis.com/v4/spreadsheets/1sfh7uwLfPL7j6-hWp5WGjin6PiOIG2WisWSa5sX_K5E/values/products?key=AIzaSyB8fiftAh5Ms8YjLfTggSzTt516ip7JOII`;
 
+
+  
   useEffect(() => {
-    Papa.parse(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSAiD_JaoAO9eQdRh4VMZJWcybCZ0S9b6tFzVYfxFSwAjOFEsFIswewvyhJ7XtV9IUpeN59Dk-wzPU_/pub?output=csv",
-      {
-        download: true,
-        header: true,
-        complete: function (results) {
-          var data = results.data;
-          dispatch(setProducts(data));
-        },
-      }
-    );
-  }, [dispatch]);
-
-
-
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data;
+        dispatch(setProducts(data.values));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [changeProducts, dispatch]);
 
   return (
     <div>
@@ -42,7 +39,8 @@ function Products() {
         <tbody>
           {products &&
             products.map((product, index) => (
-              <Product key={index} item={product} index={index}></Product>
+              index !=0?
+              <Product key={index} item={product} index={index}></Product>: null
             ))}
         </tbody>
       </table>

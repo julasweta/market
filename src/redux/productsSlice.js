@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   products: [],
-  changeProducts: 2
+  changeProducts: true
 }
 
 export const productsSlice = createSlice({
